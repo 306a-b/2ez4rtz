@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
@@ -16,20 +14,27 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.thinkpad.ez300k.adapter.BePopAdapter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.List;
-
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
+import retrofit.mime.TypedByteArray;
 
-public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerView.Adapter mAdapter;
+public class MainActivity extends AppCompatActivity
+    implements View.OnClickListener{
 
     private Client client;
     //String tmp = "xuy";
@@ -54,6 +59,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         ArrayAdapter<Song> adapter = new ArrayAdapter<Song>(this,
                 android.R.layout.simple_list_item_1, values);
         list.setAdapter(adapter);
+
+
         add.setOnClickListener(this);
         delete.setOnClickListener(this);
     }
@@ -67,8 +74,36 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 textField.setText("");
                 adapter.add(song);
                 break;
+            case R.id.delete:
+                client.sharedInstance().getWhat(new Callback<Response>() {
+                    @Override
+                    public void success(Response response, Response response2) {
+                        String json = new String(((TypedByteArray) response.getBody()).getBytes());
+
+                        try{
+                            JSONObject obj = new JSONObject(json);
+                            JSONArray for_array = obj.getJSONArray("bepopular");
+                            Gson parser = new Gson();
+                            Song[] array  = parser.fromJson(for_array.toString(), Song[].class);
+                            for(int i=0;i<array.length;i++){
+                                textField.setText(array[i].toString());
+                            }
+                            //вывод этого массива
+                        } catch (Exception e){
+                            textField.setText("FUCK!");
+                        }
+
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        textField.setText(error.toString());
+                    }
+                });
+                break;
 
         }
+
         adapter.notifyDataSetChanged();
     }
 
@@ -83,5 +118,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         dataBase.close();
         super.onPause();
     }
+
 
 }

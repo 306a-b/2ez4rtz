@@ -38,7 +38,9 @@ public class DataBaseClient {
         values.put(DataBaseSongs.COLUMN_AUTHORNAME, authorName);
         values.put(DataBaseSongs.COLUMN_AUDIOURL, audioURL);
         values.put(DataBaseSongs.COLUMN_IMAGEURL, imageURL);
-        long insertId = database.insert(dbHelper.TABLE_NAME, null, values);
+
+        long insertId = database.insert(dbHelper.TABLE_NAME, null,
+                values);
 
         Cursor cursor = database.query(DataBaseSongs.TABLE_NAME, allColumns, null, null, null, null, null);
         cursor.moveToFirst();

@@ -11,6 +11,7 @@ dependencies {
     compile 'io.reactivex:rxandroid:0.23.+'
     compile 'com.squareup.retrofit:retrofit:1.9.+'
     compile "org.parceler:parceler-api:1.0.3"
+    compile 'com.squareup.picasso:picasso:2.5.2'
     apt "org.parceler:parceler:1.0.3"
 }
 

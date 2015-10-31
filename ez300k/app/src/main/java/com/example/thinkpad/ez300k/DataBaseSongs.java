@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class DataBaseSongs extends SQLiteOpenHelper {
 
-    public static final String TABLE_NAME = "so";
+    public static final String TABLE_NAME = "song";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_SONGNAME = "songname";
     public static final String COLUMN_AUTHORNAME = "authorname";

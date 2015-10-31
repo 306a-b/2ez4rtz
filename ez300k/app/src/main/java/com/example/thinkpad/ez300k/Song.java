@@ -1,5 +1,7 @@
 package com.example.thinkpad.ez300k;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -7,11 +9,20 @@ import org.json.JSONObject;
  * Created by ThinkPad on 31.10.2015.
  */
 public class Song {
-    private long id;
-    private String songName;
-    private String authorName;
-    private String audioURL;
-    private String imageURL;
+    @SerializedName("aid")
+    public long id;
+
+    @SerializedName("title")
+    public String songName;
+
+    @SerializedName("artist")
+    public String authorName;
+
+    @SerializedName("url")
+    public String audioURL;
+
+    @SerializedName("image_url")
+    public String imageURL;
 
     public long getId() {
         return id;
