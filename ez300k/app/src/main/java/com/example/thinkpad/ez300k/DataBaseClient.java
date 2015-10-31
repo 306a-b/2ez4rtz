@@ -38,6 +38,7 @@ public class DataBaseClient {
         values.put(DataBaseSongs.COLUMN_AUTHORNAME, authorName);
         values.put(DataBaseSongs.COLUMN_AUDIOURL, audioURL);
         values.put(DataBaseSongs.COLUMN_IMAGEURL, imageURL);
+        long insertId = database.insert(dbHelper.TABLE_NAME, null, values);
 
         Cursor cursor = database.query(DataBaseSongs.TABLE_NAME, allColumns, null, null, null, null, null);
         cursor.moveToFirst();
@@ -51,7 +52,7 @@ public class DataBaseClient {
         //long insertId = database.insert(dbHelper.TABLE_COMMENTS, null,);
 
         //Падает Здесь!
-        Cursor cursor = database.query(DataBaseSongs.TABLE_NAME,allColumns, dbHelper.COLUMN_ID + " = " + insertId, null, null, null, null);
+        Cursor cursor = database.query(DataBaseSongs.TABLE_NAME,allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -66,8 +67,8 @@ public class DataBaseClient {
 
     private Song cursorToSong(Cursor cursor) {
         Song song = new Song();
-        song.setId(cursor.getLong(0));
-        song.setSong(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
+        //song.setId(cursor.getLong(0));
+        song.setSong(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3));
         return song;
     }
 }
