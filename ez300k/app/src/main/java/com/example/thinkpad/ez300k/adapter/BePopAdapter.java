@@ -1,28 +1,24 @@
 package com.example.thinkpad.ez300k.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.thinkpad.ez300k.BePop;
+import com.example.thinkpad.ez300k.Song;
 import com.example.thinkpad.ez300k.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class BePopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public enum ViewType { IMAGE, NO_IMAGE }
+    public enum VIEW_TYPE { IMAGE, NO_IMAGE }
 
-    private ArrayList<BePop> mData;
+    private ArrayList<Song> mData;
     private ArrayList<Integer> mViewDataType;
     private Context mContext;
 
@@ -66,7 +62,7 @@ public class BePopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    public BePopAdapter(Context context, ArrayList<BePop> mData) {
+    public BePopAdapter(Context context, ArrayList<Song> mData) {
         this.mContext = context;
         this.mData = mData;
         this.initViewType();
@@ -74,11 +70,11 @@ public class BePopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private void initViewType() {
         mViewDataType = new ArrayList<>();
-        for (BePop bePop : mData) {
-            if (!bePop.image.equals("") && isGood(bePop.image))
-                mViewDataType.add(ViewType.IMAGE.ordinal());
+        for (Song song : mData) {
+            if (!song.imageURL.equals("") && isGood(song.imageURL))
+                mViewDataType.add(VIEW_TYPE.IMAGE.ordinal());
             else
-                mViewDataType.add(ViewType.NO_IMAGE.ordinal());
+                mViewDataType.add(VIEW_TYPE.NO_IMAGE.ordinal());
         }
     }
 
@@ -91,7 +87,7 @@ public class BePopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder vh;
 
-        if (viewType == ViewType.IMAGE.ordinal()) {
+        if (viewType == VIEW_TYPE.IMAGE.ordinal()) {
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommended, parent, false);
             vh = new ViewHolderBePopSong(v);
@@ -105,23 +101,23 @@ public class BePopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final BePop bePop = mData.get(position);
+        final Song song = mData.get(position);
 
         int viewType = holder.getItemViewType();
 
-        if (viewType == ViewType.IMAGE.ordinal()) {
+        if (viewType == VIEW_TYPE.IMAGE.ordinal()) {
             ViewHolderBePopSong viewHolder = (ViewHolderBePopSong) holder;
-            viewHolder.artistName.setText(bePop.artistName);
-            viewHolder.songName.setText(bePop.songsName);
+            viewHolder.artistName.setText(song.artistName);
+            viewHolder.songName.setText(song.songName);
             Picasso.with(mContext)
-                    .load(bePop.image)
+                    .load(song.imageURL)
                     .error(R.drawable.error_image)
                     .placeholder(R.drawable.error_image)
                     .into(viewHolder.singerImage);
-        } else if (viewType == ViewType.NO_IMAGE.ordinal()) {
+        } else if (viewType == VIEW_TYPE.NO_IMAGE.ordinal()) {
             ViewHolderBePopSongNoImage viewHolder = (ViewHolderBePopSongNoImage) holder;
-            viewHolder.artistName.setText(bePop.artistName);
-            viewHolder.songName.setText(bePop.songsName);
+            viewHolder.artistName.setText(song.artistName);
+            viewHolder.songName.setText(song.songName);
         }
 
 

@@ -1,6 +1,8 @@
 package com.example.thinkpad.ez300k;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -32,12 +34,12 @@ public class DataBaseClient {
         dbHelper.close();
     }
 
-    public Song createSong(String songName,String authorName,String audioURL,String imageURL) {
+    public Song createSong(Song song) {
         ContentValues values = new ContentValues();
-        values.put(DataBaseSongs.COLUMN_SONGNAME, songName);
-        values.put(DataBaseSongs.COLUMN_AUTHORNAME, authorName);
-        values.put(DataBaseSongs.COLUMN_AUDIOURL, audioURL);
-        values.put(DataBaseSongs.COLUMN_IMAGEURL, imageURL);
+        values.put(DataBaseSongs.COLUMN_SONGNAME,song.songName);
+        values.put(DataBaseSongs.COLUMN_AUTHORNAME, song.artistName);
+        values.put(DataBaseSongs.COLUMN_AUDIOURL, song.audioURL);
+        values.put(DataBaseSongs.COLUMN_IMAGEURL, song.imageURL);
 
         long insertId = database.insert(dbHelper.TABLE_NAME, null,
                 values);
@@ -49,8 +51,8 @@ public class DataBaseClient {
         return newComment;
     }
 
-    public List<Song> getAllSongs() {
-        List<Song> comments = new ArrayList<>();
+    public ArrayList<Song> getAllSongs() {
+        ArrayList<Song> comments = new ArrayList<>();
         //long insertId = database.insert(dbHelper.TABLE_COMMENTS, null,);
 
         //Падает Здесь!
@@ -64,6 +66,8 @@ public class DataBaseClient {
         }
         // make sure to close the cursor
         cursor.close();
+        //!!!!!!!!!!
+        Collections.reverse(comments);
         return comments;
     }
 

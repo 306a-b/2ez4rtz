@@ -16,7 +16,7 @@ public class Song {
     public String songName;
 
     @SerializedName("artist")
-    public String authorName;
+    public String artistName;
 
     @SerializedName("url")
     public String audioURL;
@@ -24,6 +24,9 @@ public class Song {
     @SerializedName("image_url")
     public String imageURL;
 
+    public Song() {
+    }
+    
     public long getId() {
         return id;
     }
@@ -38,7 +41,7 @@ public class Song {
 
     public void setSong(String name,String author,String auURL,String imURL) {
         this.songName = name;
-        this.authorName = author;
+        this.artistName = author;
         this.audioURL = auURL;
         this.imageURL = imURL;
     }
@@ -48,7 +51,7 @@ public class Song {
     public String toString(){
        StringBuilder str = new StringBuilder();
         str.append("songName : " + songName);
-        str.append("songAuthor : " + authorName);
+        str.append("songAuthor : " + artistName);
         str.append("audioURL : " + audioURL);
         str.append("imageURL : " + imageURL);
         return str.toString();

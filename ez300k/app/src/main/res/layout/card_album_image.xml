@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!-- A CardView that contains a TextView -->
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardCornerRadius="2dp"
+        android:elevation="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/albumImage"
+                android:layout_width="wrap_content"
+                android:layout_height="216dp"
+                android:src="@drawable/venom"
+                android:scaleType="centerCrop"
+                />
+
+            <TextView
+                android:id="@+id/albumName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/albumImage"
+                android:textSize="24sp"
+                android:paddingTop="24dp"
+                android:paddingBottom="16dp"
+                android:textColor="@color/primary_material_dark"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"/>
+
+            <TextView
+                android:id="@+id/singerName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:paddingBottom="16dp"
+                android:layout_below="@+id/albumName"
+                android:textColor="@color/secondary_text_default_material_light"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"/>
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/singerName"
+                android:layout_alignParentBottom="false">
+
+                <Button
+                    android:id="@+id/playButton"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="PLAY"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:height="14dp"
+                    android:minWidth="64dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical" />
+
+                <Button
+                    android:id="@+id/addPlaylistButton"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:text="ADD TO PLAYLIST"
+                    android:layout_toRightOf="@+id/playButton"
+                    android:minWidth="64dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingRight="16dp"
+                    android:paddingLeft="16dp"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical" />
+
+                <ImageButton
+                    android:id="@+id/expandButton"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:src="@drawable/expand38"
+                    android:layout_alignParentRight="true"
+                    android:scaleType="fitXY" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/playButton"
+                    android:layout_alignParentStart="true"
+                    >
+
+                    <ListView
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:dividerHeight="0dp"
+                        android:divider="@null"
+                        android:id="@+id/songsListView" />
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

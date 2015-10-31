@@ -1,8 +1,7 @@
 package com.example.thinkpad.ez300k;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,11 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
+import com.example.thinkpad.ez300k.activity.BePopActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.google.gson.annotations.SerializedName;
+import com.example.thinkpad.ez300k.adapter.NewsAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,30 +30,27 @@ import org.json.JSONTokener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.ArrayList;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.TypedByteArray;
 
-public class MainActivity extends AppCompatActivity
-    implements View.OnClickListener{
-
-    private Client client;
-    //String tmp = "xuy";
-    //TextView text;
-    DataBaseClient dataBase;
-    ListView list;
-    Button plus,minus;
-    EditText textField;
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = new Intent(getBaseContext(), BePopActivity.class);
+        startActivity(intent);
+    }
+        /*setContentView(R.layout.activity_main);
+
+
+
+
         setContentView(R.layout.activity_main);
-        Button add = (Button)findViewById(R.id.add);
-        Button delete = (Button)findViewById(R.id.delete);
-        textField = (EditText)findViewById(R.id.set);
 
         dataBase = new DataBaseClient(this);
         dataBase.open();
@@ -63,8 +63,35 @@ public class MainActivity extends AppCompatActivity
 
         add.setOnClickListener(this);
         delete.setOnClickListener(this);
+
+
+        ArrayList<NewsInfo> cil = new ArrayList<NewsInfo>();
+
+        NewsInfo newsInfo = new NewsInfo("Bullet for bitch","fuck it","http://cs7062.vk.me/c7005/v7005440/132d0/jM3V0wxE9pQ.jpg","",songsList);
+        newsInfo.setType(NewsInfo.CARD_TYPE.ALBUM_IMAGE);
+        cil.add(newsInfo);
+
+        //ArrayList<Song> lst2 = new ArrayList<Song>();
+        //lst2.add(new Song(0,"name","artist","audiourl",""));
+        //lst2.add(new Song(1, "name", "artist", "audiourl", ""));
+        //NewsInfo newsInfo2 = new NewsInfo("RTZ","2ez","","https://www.google.ru/images/nav_logo242.png",lst2);
+        //newsInfo2.setType(NewsInfo.CARD_TYPE.ALBUM_NO_IMAGE);
+        //cil.add(newsInfo2);
+
+
+
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.bePopList);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new NewsAdapter(getApplicationContext(), cil);
+        mRecyclerView.setAdapter(mAdapter);
+
+
     }
-    public void onClick(View view) {
+    public void onClick(View view) {/*
         @SuppressWarnings("unchecked")
         ArrayAdapter<Song> adapter = (ArrayAdapter<Song>) list.getAdapter();
         Song song = null;
@@ -105,17 +132,25 @@ public class MainActivity extends AppCompatActivity
         }
 
         adapter.notifyDataSetChanged();
+        */
+    public void update() {
+
+    }
+
+    public void redraw(ArrayList<Song> songArrayList) {
+        //songsList.addAll(songArrayList);
+        //mAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void onResume() {
-        dataBase.open();
+        //dataBase.open();
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        dataBase.close();
+        //dataBase.close();
         super.onPause();
     }
 
