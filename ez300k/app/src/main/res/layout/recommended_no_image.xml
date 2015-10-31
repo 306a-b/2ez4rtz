@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:paddingTop="2dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:paddingLeft="16dp"
+        android:paddingTop="20dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:id="@+id/artistName"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center_vertical|end"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:id="@+id/songName"
+            android:textColor="#919191"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center_vertical|end"
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp" />
+    </LinearLayout>
+
+    <ImageButton
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/likeButton"
+        android:src="@drawable/favorite22"
+        android:scaleType="centerInside" />
+
+    <ImageButton
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton2addToMeButton"
+        android:src="@drawable/add186"
+        android:scaleType="centerInside" />
+
+    <ImageButton
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/addPlaylistButton"
+        android:src="@drawable/playlist_plus"
+        android:scaleType="centerInside" />
+</LinearLayout>
