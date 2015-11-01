@@ -52,7 +52,8 @@ public class BePopActivity extends Activity {
 
         songsList = new ArrayList<>();
 
-        updateView();
+        getSongsFromBase();
+        initAdapter();
         getSongsFromInternet();
     }
 
@@ -98,15 +99,12 @@ public class BePopActivity extends Activity {
                 } catch (Exception e) {
                     Log.e("PUZDU", e.toString());
                 }
-
             }
 
             @Override
             public void failure(RetrofitError error) {
                 Log.e("PUZDUu", error.toString());
             }
-            //make zapros
-
         });
 
     }

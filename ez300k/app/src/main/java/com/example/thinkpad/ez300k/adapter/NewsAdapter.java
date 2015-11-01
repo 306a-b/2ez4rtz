@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.thinkpad.ez300k.NewsInfo;
 import com.example.thinkpad.ez300k.R;
 import com.example.thinkpad.ez300k.Song;
+import com.example.thinkpad.ez300k.StandartToPlayerClickers;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -117,7 +118,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-    public static class ViewHolderCardAlbum extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolderCardAlbum extends RecyclerView.ViewHolder {
         public ImageView albumImage;
         public TextView albumName;
         public TextView singerName;
@@ -126,22 +127,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public Button addPlaylistButton;
         public ImageButton expandButton;
         public ListView songView;
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.playButton:
-                    Log.i(NewsAdapter.LOG_TAG, "press the button1");
-                    break;
-                case R.id.addPlaylistButton:
-                    Log.i(NewsAdapter.LOG_TAG, "press the button2");
-                    break;
-                case R.id.expandButton:
-                    Log.i(NewsAdapter.LOG_TAG, "press the buttone");
-
-                    break;
-            }
-        }
 
         public ViewHolderCardAlbum(View v) {
             super(v);
@@ -154,7 +139,7 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             this.songView = (ListView) v.findViewById(R.id.songsListView);
         }
     }
-    public static class ViewHolderCardAlbumNoImage extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class ViewHolderCardAlbumNoImage extends RecyclerView.ViewHolder {
         public TextView singerNameNoImage;
         public ImageView singerImage;
 
@@ -162,11 +147,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public Button addPlaylistButton;
         public ImageButton expandButton;
         public ListView songView;
-
-        @Override
-        public void onClick(View v) {
-
-        }
 
         public ViewHolderCardAlbumNoImage(View v) {
             super(v);
@@ -225,8 +205,8 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     .placeholder(R.drawable.error_image)
                     .into(holder.albumImage);
 
-            holder.addPlaylistButton.setOnClickListener(holder);
-            holder.playButton.setOnClickListener(holder);
+            holder.addPlaylistButton.setOnClickListener(new StandartToPlayerClickers(mContext, newsInfo.songsList));
+            holder.playButton.setOnClickListener(new StandartToPlayerClickers(mContext, newsInfo.songsList));
             holder.expandButton.setOnClickListener(
                     new ExpandListClick(mContext, holder.songView, newsInfo.songsList, holder.expandButton));
 
@@ -239,9 +219,9 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     .placeholder(R.drawable.error_image)
                     .into(holder.singerImage);
 
-            holder.addPlaylistButton.setOnClickListener(holder);
-            holder.playButton.setOnClickListener(holder);
-            holder.expandButton.setOnClickListener(holder);
+            //holder.addPlaylistButton.setOnClickListener(holder);
+            //holder.playButton.setOnClickListener(holder);
+            //holder.expandButton.setOnClickListener(holder);
             holder.expandButton.setOnClickListener(
                     new ExpandListClick(mContext, holder.songView, newsInfo.songsList, holder.expandButton));
 

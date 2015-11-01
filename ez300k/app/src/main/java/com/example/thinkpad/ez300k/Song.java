@@ -4,10 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
-/**
- * Created by ThinkPad on 31.10.2015.
- */
+@Parcel
 public class Song {
     @SerializedName("aid")
     public long id;
@@ -23,6 +22,15 @@ public class Song {
 
     @SerializedName("image_url")
     public String imageURL;
+
+    public Song() {}
+
+    public Song(String songName, String artistName, String audioURL, String imageURL) {
+        this.songName = songName;
+        this.artistName = artistName;
+        this.audioURL = audioURL;
+        this.imageURL = imageURL;
+    }
 
     public long getId() {
         return id;

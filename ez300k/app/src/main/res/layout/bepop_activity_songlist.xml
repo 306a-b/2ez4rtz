@@ -1,13 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sliding_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    sothree:umanoPanelHeight="68dp"
+    sothree:umanoShadowHeight="4dp" >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/bePopList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        android:background="#20000000">
     </android.support.v7.widget.RecyclerView>
 
-</LinearLayout>
+    <!-- SLIDING LAYOUT -->
+    <LinearLayout
+        android:id="@+id/dragView"
+        android:layout_width="match_parent"
+        android:layout_height="164dp"
+        android:background="#ffffff"
+        android:clickable="true"
+        android:focusable="false"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="164dp"
+                android:clickable="false"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/singerImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/venom" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="false"
+                        android:layout_alignParentStart="true"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_alignParentTop="true"
+                        android:padding="6dp">
+
+                        <TextView
+                            android:id="@+id/amountStages"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="false"
+                            android:layout_alignParentRight="true"
+                            android:background="#a2000000"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical|end"
+                            android:maxLines="1"
+                            android:paddingEnd="3dp"
+                            android:paddingStart="3dp"
+                            android:text="No Way Out"
+                            android:textColor="#ffffff"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/amountStages1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="false"
+                            android:layout_alignParentRight="true"
+                            android:background="#a2000000"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical|end"
+                            android:maxLines="1"
+                            android:paddingEnd="3dp"
+                            android:paddingStart="3dp"
+                            android:text="Bullet For My Valentine"
+                            android:textColor="#c8ffffff"
+                            android:textSize="18sp"
+                            android:layout_marginTop="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="bottom"
+                        android:layout_weight="1"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentRight="true"
+                        android:background="#a2000000"
+                        android:ellipsize="end"
+                        android:paddingTop="20dp">
+
+                        <ImageButton
+                            android:id="@+id/prev"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:alpha="0.7"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/skip_previous_white_54x54"
+                            android:layout_gravity="center_horizontal|right"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp" />
+
+                        <ImageButton
+                            android:id="@+id/play"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:alpha="0.7"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/play_circle_outline_white_54x54"
+                            android:layout_gravity="center_horizontal|right"
+                            android:adjustViewBounds="false"
+                            android:layout_marginRight="40dp"
+                            android:layout_marginLeft="40dp" />
+
+                        <ImageButton
+                            android:id="@+id/next"
+                            style="?android:attr/borderlessButtonStyle"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:alpha="0.7"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/skip_next_white_54x54"
+                            android:layout_gravity="center_horizontal|left|right"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="40dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!-- END OF SLIDING LAYOUT -->
+    </LinearLayout>
+
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>

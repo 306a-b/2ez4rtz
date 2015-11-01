@@ -21,7 +21,7 @@
 
             <ImageView
                 android:id="@+id/albumImage"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="216dp"
                 android:src="@drawable/venom"
                 android:scaleType="centerCrop"

@@ -20,7 +20,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/addToMeButton"
         android:scaleType="centerInside"
-        android:src="@drawable/favorite22" />
+        android:src="@drawable/favorite22"
+        android:padding="8dp" />
 
     <ImageButton
         android:id="@+id/addPlaylistButton"
