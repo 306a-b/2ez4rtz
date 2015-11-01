@@ -2,6 +2,8 @@ package com.example.thinkpad.ez300k;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,15 +14,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.example.thinkpad.ez300k.activity.BePopActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParser;
 import com.google.gson.annotations.SerializedName;
-import com.example.thinkpad.ez300k.adapter.NewsAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,8 +28,8 @@ import org.json.JSONTokener;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -38,6 +37,14 @@ import retrofit.client.Response;
 import retrofit.mime.TypedByteArray;
 
 public class MainActivity extends AppCompatActivity{
+
+    private Client client;
+    //String tmp = "xuy";
+    //TextView text;
+    DataBaseClient dataBase;
+    ListView list;
+    Button plus,minus;
+    EditText textField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +58,9 @@ public class MainActivity extends AppCompatActivity{
 
 
         setContentView(R.layout.activity_main);
+        Button add = (Button)findViewById(R.id.add);
+        Button delete = (Button)findViewById(R.id.delete);
+        textField = (EditText)findViewById(R.id.set);
 
         dataBase = new DataBaseClient(this);
         dataBase.open();
@@ -91,7 +101,7 @@ public class MainActivity extends AppCompatActivity{
 
 
     }
-    public void onClick(View view) {/*
+    public void onClick(View view) {
         @SuppressWarnings("unchecked")
         ArrayAdapter<Song> adapter = (ArrayAdapter<Song>) list.getAdapter();
         Song song = null;
@@ -132,7 +142,7 @@ public class MainActivity extends AppCompatActivity{
         }
 
         adapter.notifyDataSetChanged();
-        */
+
     public void update() {
 
     }
@@ -144,15 +154,15 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onResume() {
-        //dataBase.open();
+        dataBase.open();
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        //dataBase.close();
+        dataBase.close();
         super.onPause();
     }
-
+    */
 
 }

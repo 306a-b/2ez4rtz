@@ -49,15 +49,14 @@ public class BePopActivity extends Activity {
         dataBase = new DataBaseClient(this);
         dataBase.open();
 
-        getSongsFromBase();
-        initAdapter();
+        songsList = new ArrayList<>();
+
+        updateView();
         getSongsFromInternet();
-
-
     }
 
     private void getSongsFromBase() {
-        songsList = dataBase.getAllSongs();
+        songsList.addAll(dataBase.getAllSongs());
     }
 
     private void initAdapter() {
@@ -70,9 +69,10 @@ public class BePopActivity extends Activity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public void updateView(ArrayList<Song> songArrayList) {
-        //getSongsFromBase();
-        songsList.addAll(songArrayList);
+    public void updateView() {
+        songsList.clear();
+        getSongsFromBase();
+        initAdapter();
         mAdapter.notifyDataSetChanged();
     }
 
@@ -87,10 +87,13 @@ public class BePopActivity extends Activity {
                     JSONArray for_array = obj.getJSONArray("bepopular");
                     Gson parser = new Gson();
                     ArrayList<Song> array = new ArrayList<Song>(Arrays.asList(parser.fromJson(for_array.toString(), Song[].class)));
+                    boolean isChanged = false;
                     for (Song song : array) {
-                        dataBase.createSong(song);
+                        if(dataBase.createSong(song))
+                            isChanged = true;
                     }
-                    updateView(array);
+                    if(isChanged)
+                        updateView();
                 } catch (Exception e) {
                     Log.e("PUZDU", e.toString());
                 }

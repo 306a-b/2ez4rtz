@@ -24,9 +24,6 @@ public class Song {
     @SerializedName("image_url")
     public String imageURL;
 
-    public Song() {
-    }
-    
     public long getId() {
         return id;
     }
@@ -50,10 +47,10 @@ public class Song {
     @Override
     public String toString(){
        StringBuilder str = new StringBuilder();
-        str.append("songName : " + songName);
-        str.append("songAuthor : " + artistName);
-        str.append("audioURL : " + audioURL);
-        str.append("imageURL : " + imageURL);
+        str.append(" songName : " + songName);
+        str.append(" songAuthor : " + artistName);
+        str.append(" audioURL : " + audioURL);
+        str.append(" imageURL : " + imageURL);
         return str.toString();
     }
 }

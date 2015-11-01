@@ -34,31 +34,38 @@ public class DataBaseClient {
         dbHelper.close();
     }
 
-    public Song createSong(Song song) {
+    public boolean createSong(Song song) {
+        boolean isChanged = false;
         ContentValues values = new ContentValues();
-        values.put(DataBaseSongs.COLUMN_SONGNAME,song.songName);
-        values.put(DataBaseSongs.COLUMN_AUTHORNAME, song.artistName);
-        values.put(DataBaseSongs.COLUMN_AUDIOURL, song.audioURL);
-        values.put(DataBaseSongs.COLUMN_IMAGEURL, song.imageURL);
+        Cursor cursor = database.query(DataBaseSongs.TABLE_NAME, null,"_id = "+ song.id, null, null, null, null);
+        if(cursor.getCount() <= 0) {
+            isChanged = true;
+            values.put(DataBaseSongs.COLUMN_ID, song.id);
+            values.put(DataBaseSongs.COLUMN_SONGNAME, song.songName);
+            values.put(DataBaseSongs.COLUMN_AUTHORNAME, song.artistName);
+            values.put(DataBaseSongs.COLUMN_AUDIOURL, song.audioURL);
+            values.put(DataBaseSongs.COLUMN_IMAGEURL, song.imageURL);
 
-        long insertId = database.insert(dbHelper.TABLE_NAME, null,
-                values);
+            long insertId = database.insert(dbHelper.TABLE_NAME, null,
+                    values);
+        }
+        return isChanged;
 
-        Cursor cursor = database.query(DataBaseSongs.TABLE_NAME, allColumns, null, null, null, null, null);
+        /*cursor = database.query(DataBaseSongs.TABLE_NAME, allColumns, null, null, null, null, null);
         cursor.moveToFirst();
         Song newComment = cursorToSong(cursor);
-        cursor.close();
-        return newComment;
+        cursor.close();*/
+
+        //return newComment;
     }
 
     public ArrayList<Song> getAllSongs() {
         ArrayList<Song> comments = new ArrayList<>();
         //long insertId = database.insert(dbHelper.TABLE_COMMENTS, null,);
-
-        //Падает Здесь!
-        Cursor cursor = database.query(DataBaseSongs.TABLE_NAME,allColumns, null, null, null, null, null);
+        Cursor cursor = database.query(DataBaseSongs.TABLE_NAME, allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
+
         while (!cursor.isAfterLast()) {
             Song comment = cursorToSong(cursor);
             comments.add(comment);
@@ -66,7 +73,6 @@ public class DataBaseClient {
         }
         // make sure to close the cursor
         cursor.close();
-        //!!!!!!!!!!
         Collections.reverse(comments);
         return comments;
     }
@@ -74,7 +80,10 @@ public class DataBaseClient {
     private Song cursorToSong(Cursor cursor) {
         Song song = new Song();
         //song.setId(cursor.getLong(0));
-        song.setSong(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3));
+        song.setSong(cursor.getString(cursor.getColumnIndex(DataBaseSongs.COLUMN_SONGNAME)),
+                cursor.getString(cursor.getColumnIndex(DataBaseSongs.COLUMN_AUTHORNAME)),
+                cursor.getString(cursor.getColumnIndex(DataBaseSongs.COLUMN_AUDIOURL)),
+                cursor.getString(cursor.getColumnIndex(DataBaseSongs.COLUMN_IMAGEURL    )));
         return song;
     }
 }
