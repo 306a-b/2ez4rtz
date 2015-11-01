@@ -22,6 +22,8 @@ public class BePopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private ArrayList<Integer> mViewDataType;
     private Context mContext;
 
+
+
     public class ViewHolderBePopSongNoImage extends RecyclerView.ViewHolder {
         public TextView songName;
         public TextView artistName;
@@ -38,6 +40,7 @@ public class BePopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             this.addPlaylistButton = (ImageButton) itemView.findViewById(R.id.addPlaylistButton);
             this.addToMeButton = (ImageButton) itemView.findViewById(R.id.addToMeButton);
         }
+
     }
 
     public class ViewHolderBePopSong extends RecyclerView.ViewHolder {
@@ -60,6 +63,7 @@ public class BePopAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             this.addPlaylistButton = (ImageButton) itemView.findViewById(R.id.addPlaylistButton);
             this.addToMeButton = (ImageButton) itemView.findViewById(R.id.addToMeButton);
         }
+
     }
 
     public BePopAdapter(Context context, ArrayList<Song> mData) {

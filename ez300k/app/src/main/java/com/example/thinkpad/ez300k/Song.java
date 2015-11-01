@@ -4,10 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
-/**
- * Created by ThinkPad on 31.10.2015.
- */
+@Parcel
 public class Song {
     @SerializedName("aid")
     public long id;

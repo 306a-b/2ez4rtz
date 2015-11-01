@@ -39,35 +39,36 @@ import retrofit.mime.TypedByteArray;
 
 public class MainActivity extends AppCompatActivity{
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
+
+    private ArrayList<Song> songsList;
+
+    private Client client;
+    private DataBaseClient dataBase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(getBaseContext(), BePopActivity.class);
-        startActivity(intent);
-    }
-        /*setContentView(R.layout.activity_main);
-
-
-
+        //Intent intent = new Intent(getBaseContext(), BePopActivity.class);
+        //startActivity(intent);
 
         setContentView(R.layout.activity_main);
 
+        //  Intent intent = new Intent(getApplicationContext(), MediaPlayerServices.class);
+        //  startActivity(intent);
+
+
+        //setContentView(R.layout.activity_main);
+
         dataBase = new DataBaseClient(this);
         dataBase.open();
-        List<Song> values = dataBase.getAllSongs();
-        list = (ListView)findViewById(R.id.list);
-        ArrayAdapter<Song> adapter = new ArrayAdapter<Song>(this,
-                android.R.layout.simple_list_item_1, values);
-        list.setAdapter(adapter);
-
-
-        add.setOnClickListener(this);
-        delete.setOnClickListener(this);
-
+        ArrayList<Song> values = dataBase.getAllSongs();
 
         ArrayList<NewsInfo> cil = new ArrayList<NewsInfo>();
 
-        NewsInfo newsInfo = new NewsInfo("Bullet for bitch","fuck it","http://cs7062.vk.me/c7005/v7005440/132d0/jM3V0wxE9pQ.jpg","",songsList);
+        NewsInfo newsInfo = new NewsInfo("Bullet for bitch","fuck it","http://cs7062.vk.me/c7005/v7005440/132d0/jM3V0wxE9pQ.jpg","",values);
         newsInfo.setType(NewsInfo.CARD_TYPE.ALBUM_IMAGE);
         cil.add(newsInfo);
 
@@ -91,7 +92,9 @@ public class MainActivity extends AppCompatActivity{
 
 
     }
-    public void onClick(View view) {/*
+    /*
+    @Override
+    public void onClick(View view) {
         @SuppressWarnings("unchecked")
         ArrayAdapter<Song> adapter = (ArrayAdapter<Song>) list.getAdapter();
         Song song = null;
