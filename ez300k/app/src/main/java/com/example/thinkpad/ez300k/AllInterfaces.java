@@ -18,4 +18,16 @@ public interface AllInterfaces {
     @GET("/bepop/get")
     void getWhat(Callback<Response> callback);
 
+    @GET("/token")
+    void getToken(Callback<Response> callback);
+
+    @GET("/")
+    void getGroupInfo(Callback<Response> callback);
+
+    @POST("/")
+    void postSubscribe(@Body IntToSend groupId);
+
+    @POST("/")
+    void postBePop(@Body IntToSend songId);
+
 }

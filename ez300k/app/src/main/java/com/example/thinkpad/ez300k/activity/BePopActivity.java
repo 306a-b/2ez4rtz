@@ -1,6 +1,7 @@
 package com.example.thinkpad.ez300k.activity;
 
 import android.app.Activity;
+import android.app.ActivityGroup;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

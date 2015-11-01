@@ -2,45 +2,16 @@ package com.example.thinkpad.ez300k;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.thinkpad.ez300k.activity.BePopActivity;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParser;
-import com.google.gson.annotations.SerializedName;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import retrofit.mime.TypedByteArray;
+import com.example.thinkpad.ez300k.activity.VkGroupActivity;
 
 public class MainActivity extends AppCompatActivity{
 
     private Client client;
-    //String tmp = "xuy";
-    //TextView text;
     DataBaseClient dataBase;
     ListView list;
     Button plus,minus;
@@ -49,7 +20,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(getBaseContext(), BePopActivity.class);
+        Intent intent = new Intent(getBaseContext(), VkGroupActivity.class);
         startActivity(intent);
     }
         /*setContentView(R.layout.activity_main);
