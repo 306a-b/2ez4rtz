@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.thinkpad.ez300k.activity.BePopActivity;
 import com.example.thinkpad.ez300k.activity.VkGroupActivity;
 
 public class MainActivity extends AppCompatActivity{
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(getBaseContext(), VkGroupActivity.class);
+        Intent intent = new Intent(getBaseContext(), BePopActivity.class);
         startActivity(intent);
     }
         /*setContentView(R.layout.activity_main);

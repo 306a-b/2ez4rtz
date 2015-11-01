@@ -15,7 +15,7 @@ import retrofit.http.POST;
 import retrofit.http.Path;
 import retrofit.http.Query;
 public interface AllInterfaces {
-    @GET("/bepop/get")
+    @GET("/bepop")
     void getWhat(Callback<Response> callback);
 
     @GET("/token")
